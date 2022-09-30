@@ -8,35 +8,35 @@
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <link rel="stylesheet" href="css/style.css"> <!-- Styles -->
-
-
-
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        <link href="/projetos/forum/resources/css/style.css" rel="stylesheet"> <!-- Styles -->
     </head>
     <body>
-        <div class="main">
-            <input type="checkbox" id="chk" aria-hidden="true">
+    <div class="topnav" id="myTopnav">
+        <a class="navbar-brand" href="#"><img src="/projetos/forum/resources/img/96d6f2e7e1f705ab5e59c84a6dc009b2 (2).png" alt="" width="auto" height="23" class="d-inline-block align-text-top"></a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Página Inicial</a>
+        <a href="#news"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
 
-            <div class="signup">
-                <form method="post" action="http://localhost/projetos/laravel_login/public/admin/login/do">
-                    <input type="hidden" name="_token" value="mDkPQRZw0uXwBkzkrGAJGdlN4qLParc1tVvW1XTj">            <label for="chk" aria-hidden="true">Login</label>
-                    <input type="email" name="email" id="email" placeholder="Email" required="">
-                    <input type="password" name="password" id="password" placeholder="Password" required="">
-                    <button type="submit">Login</button>
-                </form>
-            </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
 
-            <div class="login">
-                <form method="post" action="http://localhost/projetos/laravel_login/public/admin/login/ct">
-                    <input type="hidden" name="_token" value="mDkPQRZw0uXwBkzkrGAJGdlN4qLParc1tVvW1XTj">            <label for="chk" aria-hidden="true">Sign up</label>
-                    <input type="text" name="name" placeholder="User name" required="">
-                    <input type="email" name="email" placeholder="Email" required="">
-                    <input type="password" name="password" placeholder="Password" required="">
-                    <button type="submit">Sign up</button>
-                </form>
+    <div style="padding-left:16px">
+        <h2>Responsive Topnav Example</h2>
+        <p>Resize the browser window to see how it works.</p>
+    </div>
 
-            </div>
-        </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
     </body>
 </html>
