@@ -84,25 +84,28 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form>
+                                        <form action="{{ route('create') }}" method="post">
+                                            @csrf
                                             <div class="mb-3">
                                                 <label for="recipient-name" class="col-form-label">Username:</label>
-                                                <input type="text" class="form-control" id="recipient-name">
+                                                <input type="text" name="name" class="form-control" id="recipient-name">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="recipient-name" class="col-form-label">Email:</label>
-                                                <input type="email" class="form-control" id="recipient-name">
+                                                <input type="email" name="email" class="form-control" id="recipient-name">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="message-text" class="col-form-label">Password:</label>
                                                 <input type="password" name="password" class="form-control" id="message-text">
                                             </div>
+                                            <button style="text-align: right" type="submit" class="btn btn-primary">Login</button>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
                                         Já tens conta <a href="#" data-bs-toggle="modal" data-bs-whatever="@mdo" data-bs-target="#login">volta para o login</a>
-                                        <button type="button" class="btn btn-primary">Login</button>
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
