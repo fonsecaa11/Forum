@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -20,8 +21,8 @@ class LoginController extends Controller
         $user->save();
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
-            return redirect()->route('welcome');
+            return redirect()->route('/');
         }
-        return redirect()->route('welcome');
+        return redirect()->route('/');
     }
 }
