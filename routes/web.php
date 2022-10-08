@@ -6,4 +6,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/create', 'logincontroller@create')->name('create');
+
+Route::post('/create', 'LoginController@create')->name('create');

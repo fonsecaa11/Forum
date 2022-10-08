@@ -84,7 +84,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('create') }}" method="post">
+                                        <form method="post" action="{{ route('create') }}" >
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="recipient-name" class="col-form-label">Username:</label>
