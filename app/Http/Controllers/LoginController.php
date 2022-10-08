@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function login()
+    {
+
+    }
+
+
     public function create(UserRequest $request)
     {
         $data = $request->validated();
@@ -21,8 +27,8 @@ class LoginController extends Controller
         $user->save();
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
-            return redirect()->route('/');
+            return redirect()->route('welcome');
         }
-        return redirect()->route('/');
+        return redirect()->route('welcome');
     }
 }
