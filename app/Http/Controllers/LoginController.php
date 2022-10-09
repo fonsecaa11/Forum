@@ -10,11 +10,31 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
+        $credentials = $request->all();
 
+        $this->validate($request, [
+            'name' => 'required',
+            'password' => 'required',
+        ]);
+
+        $fieldType  = filter_var($request->name, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+//        if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
+//            return redirect()->back()->withInput()->withErrors(['email' => 'Email Inválido']);
+//        }
+
+        if (Auth::attempt(array($fieldType => $credentials['name'], 'password' => $credentials['password']))) {
+            return redirect()->route('welcome');
+        }
+        return redirect()->back()->withInput()->withErrors(['Email/Username ou a senha está incorreto']);
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('welcome');
+    }
 
     public function create(UserRequest $request)
     {

@@ -9,9 +9,8 @@
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/projetos/forum/resources/css/app.css">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
 </head>
 
@@ -21,7 +20,7 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" class="center" href="#"><img src="/projetos/forum/resources/img/96d6f2e7e1f705ab5e59c84a6dc009b2 (2).png" alt="" width="auto" height="23" class="d-inline-block align-text-top"></a>
+                    <a class="nav-link" class="center" href="#"><img src="{{ asset('/img/96d6f2e7e1f705ab5e59c84a6dc009b2 (2).png')}}" alt="" width="auto" height="23" class="d-inline-block align-text-top"></a>
                 </li>
             </ul>
         </div>
@@ -58,16 +57,26 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="post" action="{{ route('login') }}" >>
+                                    <form id="login-form" method="post" action="{{ route('login') }}" >
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Email:</label>
-                                            <input type="text" name="email" class="form-control" id="recipient-name">
+                                            <label for="name" class="col-form-label">Username/Email:</label>
+                                            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
                                         </div>
                                         <div class="mb-3">
                                             <label for="message-text" class="col-form-label">Password:</label>
                                             <input type="password" name="password" class="form-control" id="message-text">
                                         </div>
+                                        @if($errors->any())
+                                            <div style="text-align: center" class="alert alert-danger">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                       {{ $error }}
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+
+                                        @endif
                                         <button type="submit" class="btn btn-primary">Login</button>
                                     </form>
                                 </div>
@@ -120,7 +129,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 @endif
@@ -131,7 +140,7 @@
 <br>
 <div class="center">
     <div class="form-group">
-        <img src="/projetos/forum/resources/img/59170.png" class="float-start" width="27" height="27">
+        <img src="{{ asset('/img/59170.png')}}" class="float-start" width="27" height="27">
         <input type="text" class="form-input border-bottom" placeholder="Criar Post" style="width: 95%; padding-left: 20px;">
         <span class="border-bottom-animation right"></span>
     </div>
@@ -141,8 +150,6 @@
         <input type="submit" class="btn btn-secondary" value="Publicar">
     </div>
 </div>
-
-
 
 <script>
     function myFunction() {
@@ -154,5 +161,8 @@
         }
     }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="{{asset('/js/app.js')}}"></script>
 </body>
 </html>
