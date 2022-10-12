@@ -28,6 +28,7 @@ class LoginController extends Controller
             return redirect()->route('welcome');
         }
         return redirect()->back()->withInput()->withErrors(['Email/Username ou a senha está incorreto']);
+
     }
 
     public function logout()

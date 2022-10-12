@@ -2,8 +2,12 @@ import './bootstrap';
 
 import '../sass/app.scss';
 
-const loginForm = document.getElementById("login-form");
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
 
-loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-});
