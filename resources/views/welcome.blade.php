@@ -21,7 +21,7 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" class="center" href="#"><img src="{{ asset('/img/96d6f2e7e1f705ab5e59c84a6dc009b2 (2).png')}}" alt="" width="auto" height="23" class="d-inline-block align-text-top"></a>
+                    <a class="nav-link" href="#"><img src="{{ asset('/img/96d6f2e7e1f705ab5e59c84a6dc009b2 (2).png')}}" alt="" width="auto" height="23" class="d-inline-block align-text-top"></a>
                 </li>
             </ul>
         </div>
@@ -58,14 +58,14 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label for="name" class="col-form-label">Username/Email:</label>
-                                            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="password" class="col-form-label">Password:</label>
-                                            <input type="password" name="password" id="password" class="form-control" >
-                                        </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="col-form-label">Username/Email:</label>
+                                        <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="col-form-label">Password:</label>
+                                        <input type="password" name="password" id="password" class="form-control" >
+                                    </div>
                                     @if($errors->any())
                                         <div style="text-align: center" class="alert alert-danger">
                                             <ul>
@@ -75,7 +75,7 @@
                                             </ul>
                                         </div>
                                     @endif
-                                        <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
                                 </div>
                                 <div class="modal-footer">
                                     Ainda não tens conta <a href="#" data-bs-toggle="modal" data-bs-whatever="@mdo" data-bs-target="#create">clica aqui para criares</a>
@@ -93,6 +93,11 @@
                                 <div class="modal-body">
                                     <form method="post" action="{{ route('create') }}" >
                                         @csrf
+                                        <div class="mb-3">
+                                            Avatar:
+                                            <img src="{{ asset('/img/avatar/') }}" alt="">
+                                            <input type="file" name="create_avatar" id="create_avatar">
+                                        </div>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Username:</label>
                                             <input type="text" name="create_name" class="form-control" id="create_name">
@@ -144,6 +149,7 @@
         <input type="submit" class="btn btn-secondary" value="Publicar">
     </div>
 </div>
+
 <script>
     $('#submit').click(function(){
         console.log($('#name').val());
@@ -154,17 +160,15 @@
                 url:"{{ route('login') }}",
                 method:"POST",
                 data: {name:username, password, "_token": "{{ csrf_token() }}"},
-                success:function(data)
-                {
+                success:function(data){
                     //alert(data);
-                    if(data == 'No')
+                    if(data === 'No')
                     {
                         alert("Wrong Data");
                     }
                     else
                     {
-                        $('#login').show();
-
+                        $('#login').hide();
                     }
                 }
             });
