@@ -188,3 +188,16 @@
 <script src="{{asset('/js/app.js')}}"></script>
 </body>
 </html>
+
+<script>
+    $('#getRandomAvatar').click(()=>{
+        $.ajax({
+            url: "{{route('avatars.getRandom')}}",
+            method: 'get',
+            success: data =>{
+                $('#avatarLabel').attr('src', data.avatar)
+                console.log(typeof  data)
+            }
+        })
+    })
+</script>
