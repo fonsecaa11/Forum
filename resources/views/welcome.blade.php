@@ -83,20 +83,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal fade" id="create" tabindex="-1" aria-labelledby="create" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Criar Conta</h1>
+                                    <h1 class="modal-title fs-5" id="create">Criar Conta</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="post" action="{{ route('create') }}" >
+                                    <form method="post"  action="{{ route('create') }}">
                                         @csrf
                                         <div class="mb-3">
                                             Avatar:
-                                            <img src="{{ asset('/img/avatar/') }}" alt="">
-                                            <input type="file" name="create_avatar" id="create_avatar">
+                                            @foreach($avatars as $avatar)
+                                                <input type="radio" name="avatar" value="{{ $avatar->id }}" id="{{ $avatar->id }}" style="display: none" class="form-control">
+                                                <label for="{{ $avatar->id }}"><img id="avatarLabel" src="{{ route('avatars.show',['avatar'=>$avatar->id]) }}" alt="" width="100" height="100"></label>
+
+                                            @endforeach
+                                            <button type="button" id="getRandomAvatar" class="btn btn-primary">Trocar avatar</button>
                                         </div>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Username:</label>
