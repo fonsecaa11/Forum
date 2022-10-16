@@ -130,7 +130,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ Auth::User()->name}} </a>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item">Modo Escuro</a></li>
+                            <li><a class="dropdown-item"><input type="checkbox" class="checkbox" id="chk"><label class="label" for="chk"><i class="fas fa-moon"></i><i class="fas fa-sun"></i><div class="ball"></div></label></a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li>
