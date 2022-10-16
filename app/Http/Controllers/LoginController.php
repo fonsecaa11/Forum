@@ -45,7 +45,7 @@ class LoginController extends Controller
         $user->name = $data['create_name'];
         $user->email = $data['create_email'];
         $user->password = Hash::make($data['create_password']);
-        $user->avatar = Hash::make($data['create_avatar']);
+        $user->avatar = $data['create_avatar'];
         $user->save();
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {

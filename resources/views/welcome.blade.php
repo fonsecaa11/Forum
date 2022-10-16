@@ -50,32 +50,35 @@
                 </li>
                 @if(Auth::guest())
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login">Sign In</button>
-                    <div class="modal fade" id="login" aria-labelledby="exampleModalLabel" style="display: none;">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5">Login</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="name" class="col-form-label">Username/Email:</label>
-                                        <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="col-form-label">Password:</label>
-                                        <input type="password" name="password" id="password" class="form-control" >
-                                    </div>
-                                    @if($errors->any())
-                                        <div style="text-align: center" class="alert alert-danger">
-                                            <ul>
-                                                @foreach($errors->all() as $error)
-                                                    {{ $error }}
-                                                @endforeach
-                                            </ul>
+                                    <form action="{{ route('login') }}" method="POST">
+                                    @csrf
+                                        <div class="mb-3">
+                                            <label for="name" class="col-form-label">Username/Email:</label>
+                                            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
                                         </div>
-                                    @endif
-                                    <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
+                                        <div class="mb-3">
+                                            <label for="password" class="col-form-label">Password:</label>
+                                            <input type="password" name="password" id="password" class="form-control" >
+                                        </div>
+                                        @if($errors->any())
+                                            <div style="text-align: center" class="alert alert-danger">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                        {{ $error }}
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <button type="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
                                     Ainda não tens conta <a href="#" data-bs-toggle="modal" data-bs-whatever="@mdo" data-bs-target="#create">clica aqui para criares</a>
@@ -96,9 +99,8 @@
                                         <div class="mb-3">
                                             Avatar:
                                             @foreach($avatars as $avatar)
-                                                <input type="radio" name="avatar" value="{{ $avatar->id }}" id="{{ $avatar->id }}" style="display: none" class="form-control">
+                                                <input type="radio" name="create_avatar" value="{{ $avatar->id }}" id="{{ $avatar->id }}" style="display: none" class="form-control">
                                                 <label for="{{ $avatar->id }}"><img id="avatarLabel" src="{{ route('avatars.show',['avatar'=>$avatar->id]) }}" alt="" width="100" height="100"></label>
-
                                             @endforeach
                                             <button type="button" id="getRandomAvatar" class="btn btn-primary">Trocar avatar</button>
                                         </div>
@@ -127,6 +129,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ Auth::User()->name}} </a>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item">Modo Escuro</a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li>
@@ -141,6 +145,7 @@
     </div>
 </nav>
 <br>
+@if(Auth::check())
 <div class="center">
     <div class="form-group">
         <img src="{{ asset('/img/59170.png')}}" class="float-start" width="27" height="27">
@@ -153,36 +158,14 @@
         <input type="submit" class="btn btn-secondary" value="Publicar">
     </div>
 </div>
+@endif
 
-<script>
-    $('#submit').click(function(){
-        console.log($('#name').val());
-        let username = $('#name').val();
-        let password = $('#password').val();
-        if(username != '' && password != ''){
-            $.ajax({
-                url:"{{ route('login') }}",
-                method:"POST",
-                data: {name:username, password, "_token": "{{ csrf_token() }}"},
-                success:function(data){
-                    //alert(data);
-                    if(data === 'No')
-                    {
-                        alert("Wrong Data");
-                    }
-                    else
-                    {
-                        $('#login').hide();
-                    }
-                }
-            });
-        }
-        else
-        {
-            alert("Both Fields are required");
-        }
-    });
-</script>
+<div class="center">
+    <div class="form-group">
+        <img src="{{ route('avatars.show',['avatar'=>Auth::User()->avatar_id]) }}" alt="" width="27" height="27">
+
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="{{asset('/js/app.js')}}"></script>
