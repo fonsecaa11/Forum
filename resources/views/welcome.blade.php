@@ -130,7 +130,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ Auth::User()->name}} </a>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item"><input type="checkbox" class="checkbox" id="chk"><label class="label" for="chk"><i class="fas fa-moon"></i><i class="fas fa-sun"></i><div class="ball"></div></label></a></li>
+                            <li><a class="dropdown-item"><input type="checkbox" class="checkbox" id="chk"><label class="darkmode" for="chk"><i class="fas fa-moon"></i><i class="fas fa-sun"></i><div class="ball"></div></label></a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li>
@@ -159,13 +159,6 @@
     </div>
 </div>
 @endif
-
-<div class="center">
-    <div class="form-group">
-        <img src="{{ route('avatars.show',['avatar'=>Auth::User()->avatar_id]) }}" alt="" width="27" height="27">
-
-    </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="{{asset('/js/app.js')}}"></script>
