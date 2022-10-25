@@ -2,13 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
 Route::get('/', 'IndexController@index')->name('welcome');
-Route::post('/create', 'LoginController@create')->name('create');
-Route::post('/login', 'LoginController@login')->name('login');
+Route::get('/login', 'LoginController@showLogin')->name('login');
+Route::get('/create', 'LoginController@showCreate')->name('create');
+Route::post('/login/do', 'LoginController@login')->name('login.do');
+Route::post('/create/do', 'LoginController@create')->name('create.do');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::prefix('avatars')->group(function (){
