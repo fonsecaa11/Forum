@@ -55,7 +55,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ Auth::User()->name}} </a>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Item</a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li><a class="dropdown-item" href="#">Item</a></li>
                             <li>
@@ -76,12 +76,15 @@
 @if(Auth::check())
 <div class="center">
     <div class="form-group">
-        <img src="{{ asset('/img/59170.png')}}" class="float-start" width="27" height="27">
+        <img src="{{ asset('storage'.$avatars) }}" class="float-start" width="48" height="48">
         <input type="text" class="form-input border-bottom" placeholder="Criar Post" style="width: 95%; padding-left: 20px;">
         <span class="border-bottom-animation right"></span>
+        <br>
+        <img id="blah" style="text-align: center; width: 100%; height: 100%;" >
     </div>
+
     <div class="right">
-        <input type="file" name="image" id="upload" >
+        <input type="file" name="image" onchange="readURL(this);" id="upload" >
         <label for="upload" class="btn btn-secondary"><i style="font-size: 20px;" class="fas fa-upload"></i></label>
         <input type="submit" class="btn btn-secondary" value="Publicar">
     </div>
@@ -93,5 +96,15 @@
 </html>
 
 <script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>

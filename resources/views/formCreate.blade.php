@@ -107,12 +107,12 @@
                             Avatar:
                             @foreach($avatars as $avatar)
                                 <label for="{{ $avatar->id }}"><img id="avatarLabel" src="{{ route('avatars.show',['avatar'=>$avatar->id]) }}" alt="" width="100" height="100"></label>
-                                <input type="number" name="avatar" value="{{ $avatar->id }}" id="{{ $avatar->id }}" style="display: none" class="form-control">
+                                <input type="hidden" name="avatar_id" value="{{ $avatar->id }}" id="{{ $avatar->id }}">
                             @endforeach
                             <button type="button" id="getRandomAvatar" class="btn btn-primary">Trocar avatar</button>
                         </div>
                         <div class="row">
-                            <input type="text" name="name" id="name" class="form__input @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Username">
+                            <input type="text" name="name" id="name" class="form__input" placeholder="Username">
                         </div>
                         <div class="row">
                             <input type="email" name="email" id="email" class="form__input" placeholder="Email">
@@ -120,10 +120,6 @@
                         <div class="row">
                             <!-- <span class="fa fa-lock"></span> -->
                             <input type="password" name="password" id="password" class="form__input" placeholder="Password">
-                        </div>
-                        <div class="row">
-                            <input type="checkbox" name="remember_me" id="remember_me" class="">
-                            <label for="remember_me">Remember Me!</label>
                         </div>
                         @if($errors->any())
                             <div style="text-align: center" class="alert alert-danger">

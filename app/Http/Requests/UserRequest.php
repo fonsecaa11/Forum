@@ -13,6 +13,7 @@ class UserRequest extends FormRequest
             'name' => ['required', 'unique:users'],
             'email' => ['required', 'email', 'min:8' ,'max:254', 'unique:users'],
             'password' => ['required'],
+            'avatar_id' => ['required'],
         ];
     }
 
