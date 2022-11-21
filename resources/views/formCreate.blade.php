@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <title>SOCIALIZE | CREATE</title>
     <meta charset="utf-8">

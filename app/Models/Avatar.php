@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Avatar extends Model
 {
-    protected $table = 'avatar';
+    protected $table = 'users';
+
+    public function avatar()
+    {
+        return $this->hasOne(Avatar::class, 'id', 'avatar_id');
+    }
 }

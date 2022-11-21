@@ -12,10 +12,10 @@ class IndexController extends Controller
     public function index()
     {
         if (\Auth::check()){
+            $topics = Topic::with('getName')->get();
+            $user_avatar = Avatar::with('avatar')->get();
             $avatar = Avatar::find(auth()->user()->avatar_id)->path;
-            return view('welcome',[
-                'avatar' => $avatar,
-            ]);
+            return view('welcome',['topics'=>$topics,'user_avatar'=>$user_avatar,'avatar'=>$avatar]);
         } else {
             return view('formLogin');
         }

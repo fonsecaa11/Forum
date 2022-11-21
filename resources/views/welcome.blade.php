@@ -39,10 +39,10 @@
 @endif
 </div>
 <br>
-@foreach(\App\Models\Topic::all() as $topic)
+@foreach($topics as $topic)
     <div class="center" style="color: black">
-        <img src="{{ asset('storage'.$avatar) }}" class="float-start" width="48" height="48">
-        <h5 class="card-title">{{ $topic->user_id }}</h5>
+        <img src="{{ asset('storage'.$topic->avatar->path) }}" class="float-start" width="48" height="48">
+        <h5 class="card-title">{{ $topic->getName->name}}</h5>
         <p class="card-text">{{ $topic->text }}</p>
         <img src="{{ asset('storage/'.$topic->path) }}" class="img-thumbnail" width="100%" height="100%">
     </div>
